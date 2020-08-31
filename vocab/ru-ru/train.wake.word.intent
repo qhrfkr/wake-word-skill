@@ -1,5 +1,5 @@
-(I |) train ({number}|) wacke word {name}
-(I |) want to create (my own | a |) model (to | via |) {name} (create |)
-(add | train | expand) (identification word | wacke word) {name}
-add extra wake-word voice samples
-create a new wake-word
+(я |) тренирую ({number}|) стартовых слов {name}
+(я |) хочу создать (мою |) модель для name}
+(добавить | обучить | расширить) стартовое слово {name}
+добавить дополнительные примеры голоса для стартового слова
+создать новое старт слово
