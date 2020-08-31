@@ -164,12 +164,12 @@ class WakeWord(FallbackSkill):
         else:
             name = self.get_response('witch.wakeword')
             if name is None:
-                self.speak_dialog('нет')
+                self.speak_dialog('no')
                 return
         name = name.replace(' ', '-')
         if os.path.isdir(self.settings["file_path"]+name):
             if self.ask_yesno("model.available",
-                            data={"name": name}) == "да":
+                            data={"name": name}) == "yes":
                 if os.path.isdir(self.settings["file_path"]+name):
                     rmtree(self.settings["file_path"]+name)
                 if os.path.isdir("/tmp/mycroft_wakeword/"):
@@ -200,13 +200,13 @@ class WakeWord(FallbackSkill):
                 self.remove_event('recognizer_loop:record_end')
                 self.remove_event('recognizer_loop:record_begin')
                 self.remove_instance_handlers()
-                if self.ask_yesno("calculate.anyway") == "да":
+                if self.ask_yesno("calculate.anyway") == "yes":
                     self.speak_dialog("start.calculating")
                     self.calculating_intent(self.new_name)
                     return
                 else:
                     rmtree(source)
-                    self.speak_dialog("нет")
+                    self.speak_dialog("no")
                     wait_while_speaking()
                     return
             elif self.halt is "break":
@@ -214,11 +214,11 @@ class WakeWord(FallbackSkill):
                 self.remove_event('recognizer_loop:record_begin')
                 self.remove_instance_handlers()
                 self.record_file_mover(yespath, nopath, source)
-                if self.ask_yesno("calculate.anyway") == "да":
+                if self.ask_yesno("calculate.anyway") == "yes":
                     self.speak_dialog("start.calculating")
                     self.calculating_intent(self.new_name)
                 else:
-                    self.speak_dialog("прервать")
+                    self.speak_dialog("break")
                     wait_while_speaking()
                     return
             elif self.halt is None:
@@ -262,7 +262,7 @@ class WakeWord(FallbackSkill):
             self.remove_event('recognizer_loop:record_begin')
             self.remove_instance_handlers()
             #### Save wakewords in data folder
-            if self.ask_yesno("is.all.ok") == "нет":
+            if self.ask_yesno("is.all.ok") == "no":
                 rmtree(source)
                 return
             wait_while_speaking()
